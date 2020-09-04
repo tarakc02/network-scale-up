@@ -35,5 +35,9 @@ model {
 
 generated quantities {
     vector[n_unk] subpop_size;
+    // int expected_responses[n_respondents, n_unk];
     subpop_size = unk_pct * population;
+    // for (i in 1:n_respondents) {
+    //     expected_responses[i] = poisson_rng(degree[i] * unk_pct);
+    // }
 }
