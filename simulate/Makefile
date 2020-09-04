@@ -8,18 +8,31 @@
 
 .PHONY: all clean
 
-all: output/random-degree-25-resp.rds \
-	output/random-degree-50-resp.rds \
-	output/random-degree-100-resp.rds
+all: output/rd-25.rds \
+	output/rd-100.rds \
+	output/bfx-25.rds \
+	output/bfx-100.rds
 
 clean: 
 		-rm -r output/*
 
-output/random-degree-%-resp.rds: src/sim.R
+output/rd-%.rds: src/rand-degree.R
 	Rscript --vanilla $< \
 			--population_size=1000000 \
 			--n_known=10 \
 			--n_unknown=3 \
+			--mu=5.5 \
+			--sigma=1.2 \
+			--n_respondents=$* \
+			--output=$@
+
+output/bfx-%.rds: src/barrier-fx.R
+	Rscript --vanilla $< \
+			--population_size=1000000 \
+			--n_known=10 \
+			--n_unknown=3 \
+			--mu=5.5 \
+			--sigma=1.2 \
 			--n_respondents=$* \
 			--output=$@
 
