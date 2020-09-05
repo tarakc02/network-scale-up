@@ -35,9 +35,15 @@ model {
 
 generated quantities {
     vector[n_unk] subpop_size;
-    // int expected_responses[n_respondents, n_unk];
+    int expected_responses[n_respondents, n_unk];
+    real dl[n_respondents] = normal_rng(rep_vector(mu, n_respondents), sigma);
+    real rep_degree[n_respondents] = exp(dl);
+    int rep_data[n_respondents, n_unk];
     subpop_size = unk_pct * population;
-    // for (i in 1:n_respondents) {
-    //     expected_responses[i] = poisson_rng(degree[i] * unk_pct);
-    // }
+    for (i in 1:n_respondents) {
+        expected_responses[i] = poisson_rng(degree[i] * unk_pct);
+        for (k in 1:n_unk) {
+            rep_data[i,k] = poisson_rng(rep_degree[i] * unk_pct[k]);
+        }
+    }
 }
