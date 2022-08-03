@@ -1,6 +1,6 @@
 Network Scale Up for estimating the size of hard-to-reach subpopulations
 ================
-[Tarak Shah](https://hrdag.org/people/tarak-shah/)
+[Tarak Shah](https://tarakc02.github.io/)
 
 -   <a href="#background" id="toc-background">Background</a>
 -   <a href="#simulation" id="toc-simulation">Simulation</a>
@@ -146,18 +146,18 @@ interval, alongside the ground truth:
 
 | model | data    | subpop | truth   | estimate and 95% interval   | in_range | p-value (truth) |
 |:------|:--------|-------:|:--------|:----------------------------|:---------|----------------:|
-| rd    | rd-100  |      1 | 53,811  | 53,459 (51,450 - 55,473)    | TRUE     |           0.644 |
-| rd    | rd-100  |      2 | 168,157 | 170,031 (166,414 - 173,678) | TRUE     |           0.166 |
-| rd    | rd-100  |      3 | 43,734  | 43,339 (41,702 - 45,015)    | TRUE     |           0.685 |
-| rd    | bfx-100 |      1 | 97,573  | 86,158 (83,618 - 88,609)    | FALSE    |           1.000 |
-| rd    | bfx-100 |      2 | 95,487  | 92,356 (89,635 - 95,363)    | FALSE    |           0.979 |
-| rd    | bfx-100 |      3 | 10,779  | 8,242 (7,487 - 9,041)       | FALSE    |           1.000 |
-| bfx   | rd-100  |      1 | 53,811  | 53,661 (51,388 - 56,124)    | TRUE     |           0.554 |
-| bfx   | rd-100  |      2 | 168,157 | 169,596 (165,216 - 173,858) | TRUE     |           0.271 |
-| bfx   | rd-100  |      3 | 43,734  | 43,655 (41,622 - 45,994)    | TRUE     |           0.535 |
-| bfx   | bfx-100 |      1 | 97,573  | 93,722 (75,021 - 119,086)   | TRUE     |           0.635 |
-| bfx   | bfx-100 |      2 | 95,487  | 111,196 (86,984 - 139,719)  | TRUE     |           0.103 |
-| bfx   | bfx-100 |      3 | 10,779  | 9,815 (7,869 - 12,356)      | TRUE     |           0.791 |
+| rd    | rd-100  |      1 | 53,811  | 53,448 (51,474 - 55,536)    | TRUE     |           0.635 |
+| rd    | rd-100  |      2 | 168,157 | 170,076 (166,253 - 173,717) | TRUE     |           0.164 |
+| rd    | rd-100  |      3 | 43,734  | 43,389 (41,544 - 45,030)    | TRUE     |           0.660 |
+| rd    | bfx-100 |      1 | 97,573  | 86,114 (83,689 - 88,578)    | FALSE    |           1.000 |
+| rd    | bfx-100 |      2 | 95,487  | 92,396 (89,781 - 95,079)    | FALSE    |           0.985 |
+| rd    | bfx-100 |      3 | 10,779  | 8,236 (7,449 - 9,030)       | FALSE    |           1.000 |
+| bfx   | rd-100  |      1 | 53,811  | 53,641 (51,503 - 56,090)    | TRUE     |           0.546 |
+| bfx   | rd-100  |      2 | 168,157 | 169,743 (164,980 - 174,218) | TRUE     |           0.264 |
+| bfx   | rd-100  |      3 | 43,734  | 43,710 (41,622 - 45,906)    | TRUE     |           0.511 |
+| bfx   | bfx-100 |      1 | 97,573  | 93,812 (76,049 - 119,229)   | TRUE     |           0.644 |
+| bfx   | bfx-100 |      2 | 95,487  | 110,748 (87,319 - 140,971)  | TRUE     |           0.101 |
+| bfx   | bfx-100 |      3 | 10,779  | 9,808 (7,887 - 12,433)      | TRUE     |           0.780 |
 
 The `rd` model fails to recover the unknown population sizes when the
 true data generating process allows for individual variation in

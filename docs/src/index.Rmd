@@ -1,7 +1,7 @@
 ---
 title: Network Scale Up for estimating the size of hard-to-reach subpopulations
 author:
-- "[Tarak Shah](https://hrdag.org/people/tarak-shah/)"
+- "[Tarak Shah](https://tarakc02.github.io/)"
 output:
     github_document:
         toc: true
