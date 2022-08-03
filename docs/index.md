@@ -51,14 +51,14 @@ their contacts).
 ## Simulation
 
 To get a better understanding of the method, I coded up [some
-simulations](simulate). I simulated from two different models, the
-[**random degree**](simulate/src/rand-degree.R) model, which allows each
-respondent’s degree (the total number of people they know) to vary, and
-the [**barrier effects**](simulate/src/barrier-fx.R) model, which also
-allows the probability of knowing someone in the subpopulations of
-interest to vary. From each model, I simulated a survey of 25 people,
-and one of 100 people, so 4 simulated datasets in all. Below is the
-distribution of degree for the simulated respondents in each simulation:
+simulations](https://github.com/tarakc02/network-scale-up). I simulated
+from two different models, the **random degree** model, which allows
+each respondent’s degree (the total number of people they know) to vary,
+and the **barrier effects** model, which also allows the probability of
+knowing someone in the subpopulations of interest to vary. From each
+model, I simulated a survey of 25 people, and one of 100 people, so 4
+simulated datasets in all. Below is the distribution of degree for the
+simulated respondents in each simulation:
 
     ## # A tibble: 4 × 8
     ##   model    `0%` `10%` `30%` `50%` `70%` `90%` `100%`
@@ -98,7 +98,8 @@ And summaries of the remaining
 ## Models
 
 Find the stan models used to fit the random degree and barrier effects
-models in [`fit-models/src`](fit-models/src).
+models in the `fit-models` directory in [the github
+repo](https://github.com/tarakc02/network-scale-up).
 
 ## Assessing fit without access to ground truth
 
@@ -114,19 +115,20 @@ things have fit well, then the actual data set should look like the
 simulated data sets. So, for instance, the mean in the actual data
 should fall within the range of means seen in the simulated datasets.
 
-See [assess-fit/output](assess-fit/output) for all of the resulting
-comparisons. Below are a couple of representative examples. First, we
-see how each model looked on the random degree simulated data with 100
-respondents:
+See the assess-fit/output directory in [the
+repo](https://github.com/tarakc02/network-scale-up) for all of the
+resulting comparisons. Below are a couple of representative examples.
+First, we see how each model looked on the random degree simulated data
+with 100 respondents:
 
-| ![](assess-fit/output/checkfit-rd-100-rd.png) | ![](assess-fit/output/checkfit-rd-100-bfx.png) |
-|-----------------------------------------------|------------------------------------------------|
+| ![](/assess-fit/output/checkfit-rd-100-rd.png) | ![](/assess-fit/output/checkfit-rd-100-bfx.png) |
+|------------------------------------------------|-------------------------------------------------|
 
 Now the two models on the barrier effects simulated data with 100
 respondents:
 
-| ![](assess-fit/output/checkfit-bfx-100-rd.png) | ![](assess-fit/output/checkfit-bfx-100-bfx.png) |
-|------------------------------------------------|-------------------------------------------------|
+| ![](/assess-fit/output/checkfit-bfx-100-rd.png) | ![](/assess-fit/output/checkfit-bfx-100-bfx.png) |
+|-------------------------------------------------|--------------------------------------------------|
 
 Since the random degree model doesn’t account for variation in exposure
 to the subpopulation, the fitted model cannot account for the amount of
@@ -146,18 +148,18 @@ interval, alongside the ground truth:
 
 | model | data    | subpop | truth   | estimate and 95% interval   | in_range | p-value (truth) |
 |:------|:--------|-------:|:--------|:----------------------------|:---------|----------------:|
-| rd    | rd-100  |      1 | 53,811  | 53,448 (51,474 - 55,536)    | TRUE     |           0.635 |
-| rd    | rd-100  |      2 | 168,157 | 170,076 (166,253 - 173,717) | TRUE     |           0.164 |
-| rd    | rd-100  |      3 | 43,734  | 43,389 (41,544 - 45,030)    | TRUE     |           0.660 |
-| rd    | bfx-100 |      1 | 97,573  | 86,114 (83,689 - 88,578)    | FALSE    |           1.000 |
-| rd    | bfx-100 |      2 | 95,487  | 92,396 (89,781 - 95,079)    | FALSE    |           0.985 |
-| rd    | bfx-100 |      3 | 10,779  | 8,236 (7,449 - 9,030)       | FALSE    |           1.000 |
-| bfx   | rd-100  |      1 | 53,811  | 53,641 (51,503 - 56,090)    | TRUE     |           0.546 |
-| bfx   | rd-100  |      2 | 168,157 | 169,743 (164,980 - 174,218) | TRUE     |           0.264 |
-| bfx   | rd-100  |      3 | 43,734  | 43,710 (41,622 - 45,906)    | TRUE     |           0.511 |
-| bfx   | bfx-100 |      1 | 97,573  | 93,812 (76,049 - 119,229)   | TRUE     |           0.644 |
-| bfx   | bfx-100 |      2 | 95,487  | 110,748 (87,319 - 140,971)  | TRUE     |           0.101 |
-| bfx   | bfx-100 |      3 | 10,779  | 9,808 (7,887 - 12,433)      | TRUE     |           0.780 |
+| rd    | rd-100  |      1 | 53,811  | 53,439 (51,478 - 55,494)    | TRUE     |           0.650 |
+| rd    | rd-100  |      2 | 168,157 | 170,041 (166,435 - 173,769) | TRUE     |           0.164 |
+| rd    | rd-100  |      3 | 43,734  | 43,306 (41,626 - 45,062)    | TRUE     |           0.671 |
+| rd    | bfx-100 |      1 | 97,573  | 86,131 (83,582 - 88,428)    | FALSE    |           1.000 |
+| rd    | bfx-100 |      2 | 95,487  | 92,408 (89,805 - 95,079)    | FALSE    |           0.988 |
+| rd    | bfx-100 |      3 | 10,779  | 8,247 (7,504 - 9,023)       | FALSE    |           1.000 |
+| bfx   | rd-100  |      1 | 53,811  | 53,660 (51,436 - 55,966)    | TRUE     |           0.551 |
+| bfx   | rd-100  |      2 | 168,157 | 169,621 (165,338 - 173,937) | TRUE     |           0.276 |
+| bfx   | rd-100  |      3 | 43,734  | 43,692 (41,595 - 45,752)    | TRUE     |           0.521 |
+| bfx   | bfx-100 |      1 | 97,573  | 94,023 (75,442 - 119,385)   | TRUE     |           0.619 |
+| bfx   | bfx-100 |      2 | 95,487  | 111,911 (88,295 - 142,017)  | TRUE     |           0.104 |
+| bfx   | bfx-100 |      3 | 10,779  | 9,859 (7,797 - 12,368)      | TRUE     |           0.763 |
 
 The `rd` model fails to recover the unknown population sizes when the
 true data generating process allows for individual variation in

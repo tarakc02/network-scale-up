@@ -5,7 +5,7 @@ author:
 output:
     github_document:
         toc: true
-        html_preview: true
+        html_preview: false
 ---
 
 ## Background
@@ -44,14 +44,14 @@ count people when asked to quickly report on their contacts).
 ## Simulation
 
 To get a better understanding of the method, I coded up [some
-simulations](simulate). I simulated from two different models, the [**random
-degree**](simulate/src/rand-degree.R) model, which allows
-each respondent's degree (the total number of people they know) to vary, and
-the [**barrier effects**](simulate/src/barrier-fx.R) model,
-which also allows the probability of knowing someone in the subpopulations of
-interest to vary. From each model, I simulated a survey of 25 people, and one
-of 100 people, so 4 simulated datasets in all. Below is the distribution of
-degree for the simulated respondents in each simulation:
+simulations](https://github.com/tarakc02/network-scale-up). I simulated from
+two different models, the **random degree** model, which allows each
+respondent's degree (the total number of people they know) to vary, and the
+**barrier effects** model, which also allows the probability of knowing someone
+in the subpopulations of interest to vary. From each model, I simulated a
+survey of 25 people, and one of 100 people, so 4 simulated datasets in all.
+Below is the distribution of degree for the simulated respondents in each
+simulation:
 
 ```{r, message = FALSE, warn = FALSE, echo = FALSE}
 library(purrr)
@@ -96,7 +96,7 @@ iwalk(sim_stats, summarise_sim)
 ## Models
 
 Find the stan models used to fit the random degree and barrier effects models
-in [`fit-models/src`](fit-models/src).
+in the `fit-models` directory in [the github repo](https://github.com/tarakc02/network-scale-up).
 
 ## Assessing fit without access to ground truth
 
@@ -112,17 +112,17 @@ set should look like the simulated data sets. So, for instance, the mean in the
 actual data should fall within the range of means seen in the simulated
 datasets.
 
-See [assess-fit/output](assess-fit/output) for all of the
-resulting comparisons. Below are a couple of representative examples. First, we
-see how each model looked on the random degree simulated data with 100
-respondents:
+See the assess-fit/output directory in [the
+repo](https://github.com/tarakc02/network-scale-up) for all of the resulting
+comparisons. Below are a couple of representative examples. First, we see how
+each model looked on the random degree simulated data with 100 respondents:
 
-|![](assess-fit/output/checkfit-rd-100-rd.png) | ![](assess-fit/output/checkfit-rd-100-bfx.png)|
+|![](/assess-fit/output/checkfit-rd-100-rd.png) | ![](/assess-fit/output/checkfit-rd-100-bfx.png)|
 |-|-|
 
 Now the two models on the barrier effects simulated data with 100 respondents:
 
-|![](assess-fit/output/checkfit-bfx-100-rd.png) |![](assess-fit/output/checkfit-bfx-100-bfx.png)|
+|![](/assess-fit/output/checkfit-bfx-100-rd.png) |![](/assess-fit/output/checkfit-bfx-100-bfx.png)|
 |-|-|
 
 Since the random degree model doesn't account for variation in exposure to the
