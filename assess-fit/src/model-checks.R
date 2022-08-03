@@ -46,7 +46,7 @@ observed_smry <- observed %>%
 
 sim_summary <- gather_draws(fit,
                             expected_responses[respondent, question],
-                            n = 1000) %>%
+                            ndraws = 1000) %>%
     group_by(.draw, question) %>%
     summarise(mean = mean(.value),
               percentile95 = quantile(.value, .95),
@@ -68,7 +68,7 @@ out <- ggplot(sim_summary, aes(x = value)) +
     facet_grid(statistic ~ question, scales = "free",
                labeller = labeller(question = function(x) paste0("Question #", x))) +
     geom_vline(data = observed_smry, aes(xintercept = truth), colour = "red") +
-    geom_label(data = sim_p_vals, colour = "red", size = 1.5,
+    geom_label(data = sim_p_vals, colour = "red", size = 1,
                label.size = 0,
                label.padding = unit(0.1, "lines"),
                aes(x = truth, y = Inf,
@@ -77,10 +77,10 @@ out <- ggplot(sim_summary, aes(x = value)) +
                vjust = "inward") +
     ggtitle("Summaries of observed and model-simulated data",
             paste0("model: ", model_name, "; data: ", data_name)) +
-    theme_minimal(base_size = 6)
+    theme_minimal(base_size = 4)
 
 
-ggsave(out, height = 3, width = 4,
+ggsave(out, height = 450, width = 500, units = "px", bg = "white",
        filename = paste0(args$outdir, "/checkfit-", stub, ".png"))
 
 # done.
