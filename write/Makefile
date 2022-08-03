@@ -7,7 +7,7 @@
 
 .PHONY: all clean
 
-all: index.md
+all: README.md
 
 clean: 
 	-rm -r output/*
