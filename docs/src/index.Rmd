@@ -117,12 +117,12 @@ repo](https://github.com/tarakc02/network-scale-up) for all of the resulting
 comparisons. Below are a couple of representative examples. First, we see how
 each model looked on the random degree simulated data with 100 respondents:
 
-|![](/assess-fit/output/checkfit-rd-100-rd.png) | ![](/assess-fit/output/checkfit-rd-100-bfx.png)|
+|![](https://github.com/tarakc02/network-scale-up/blob/master/assess-fit/output/checkfit-rd-100-rd.png?raw=true) | ![](https://github.com/tarakc02/network-scale-up/blob/master/assess-fit/output/checkfit-rd-100-bfx.png?raw=true)|
 |-|-|
 
 Now the two models on the barrier effects simulated data with 100 respondents:
 
-|![](/assess-fit/output/checkfit-bfx-100-rd.png) |![](/assess-fit/output/checkfit-bfx-100-bfx.png)|
+|![](https://github.com/tarakc02/network-scale-up/blob/master/assess-fit/output/checkfit-bfx-100-rd.png?raw=true) |![](https://github.com/tarakc02/network-scale-up/blob/master/assess-fit/output/checkfit-bfx-100-bfx.png?raw=true)|
 |-|-|
 
 Since the random degree model doesn't account for variation in exposure to the

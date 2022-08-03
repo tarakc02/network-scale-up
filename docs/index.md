@@ -121,14 +121,14 @@ resulting comparisons. Below are a couple of representative examples.
 First, we see how each model looked on the random degree simulated data
 with 100 respondents:
 
-| ![](/assess-fit/output/checkfit-rd-100-rd.png) | ![](/assess-fit/output/checkfit-rd-100-bfx.png) |
-|------------------------------------------------|-------------------------------------------------|
+| ![](https://github.com/tarakc02/network-scale-up/blob/master/assess-fit/output/checkfit-rd-100-rd.png?raw=true) | ![](https://github.com/tarakc02/network-scale-up/blob/master/assess-fit/output/checkfit-rd-100-bfx.png?raw=true) |
+|-----------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------|
 
 Now the two models on the barrier effects simulated data with 100
 respondents:
 
-| ![](/assess-fit/output/checkfit-bfx-100-rd.png) | ![](/assess-fit/output/checkfit-bfx-100-bfx.png) |
-|-------------------------------------------------|--------------------------------------------------|
+| ![](https://github.com/tarakc02/network-scale-up/blob/master/assess-fit/output/checkfit-bfx-100-rd.png?raw=true) | ![](https://github.com/tarakc02/network-scale-up/blob/master/assess-fit/output/checkfit-bfx-100-bfx.png?raw=true) |
+|------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------|
 
 Since the random degree model doesn’t account for variation in exposure
 to the subpopulation, the fitted model cannot account for the amount of
@@ -148,18 +148,18 @@ interval, alongside the ground truth:
 
 | model | data    | subpop | truth   | estimate and 95% interval   | in_range | p-value (truth) |
 |:------|:--------|-------:|:--------|:----------------------------|:---------|----------------:|
-| rd    | rd-100  |      1 | 53,811  | 53,439 (51,478 - 55,494)    | TRUE     |           0.650 |
-| rd    | rd-100  |      2 | 168,157 | 170,041 (166,435 - 173,769) | TRUE     |           0.164 |
-| rd    | rd-100  |      3 | 43,734  | 43,306 (41,626 - 45,062)    | TRUE     |           0.671 |
-| rd    | bfx-100 |      1 | 97,573  | 86,131 (83,582 - 88,428)    | FALSE    |           1.000 |
-| rd    | bfx-100 |      2 | 95,487  | 92,408 (89,805 - 95,079)    | FALSE    |           0.988 |
-| rd    | bfx-100 |      3 | 10,779  | 8,247 (7,504 - 9,023)       | FALSE    |           1.000 |
-| bfx   | rd-100  |      1 | 53,811  | 53,660 (51,436 - 55,966)    | TRUE     |           0.551 |
-| bfx   | rd-100  |      2 | 168,157 | 169,621 (165,338 - 173,937) | TRUE     |           0.276 |
-| bfx   | rd-100  |      3 | 43,734  | 43,692 (41,595 - 45,752)    | TRUE     |           0.521 |
-| bfx   | bfx-100 |      1 | 97,573  | 94,023 (75,442 - 119,385)   | TRUE     |           0.619 |
-| bfx   | bfx-100 |      2 | 95,487  | 111,911 (88,295 - 142,017)  | TRUE     |           0.104 |
-| bfx   | bfx-100 |      3 | 10,779  | 9,859 (7,797 - 12,368)      | TRUE     |           0.763 |
+| rd    | rd-100  |      1 | 53,811  | 53,427 (51,457 - 55,564)    | TRUE     |           0.652 |
+| rd    | rd-100  |      2 | 168,157 | 170,124 (166,422 - 173,574) | TRUE     |           0.140 |
+| rd    | rd-100  |      3 | 43,734  | 43,376 (41,680 - 45,253)    | TRUE     |           0.653 |
+| rd    | bfx-100 |      1 | 97,573  | 86,101 (83,766 - 88,712)    | FALSE    |           1.000 |
+| rd    | bfx-100 |      2 | 95,487  | 92,447 (89,788 - 95,063)    | FALSE    |           0.989 |
+| rd    | bfx-100 |      3 | 10,779  | 8,215 (7,446 - 8,998)       | FALSE    |           1.000 |
+| bfx   | rd-100  |      1 | 53,811  | 53,622 (51,425 - 55,871)    | TRUE     |           0.565 |
+| bfx   | rd-100  |      2 | 168,157 | 169,492 (165,137 - 174,029) | TRUE     |           0.273 |
+| bfx   | rd-100  |      3 | 43,734  | 43,655 (41,625 - 45,817)    | TRUE     |           0.528 |
+| bfx   | bfx-100 |      1 | 97,573  | 93,985 (75,021 - 117,012)   | TRUE     |           0.632 |
+| bfx   | bfx-100 |      2 | 95,487  | 111,918 (87,650 - 143,229)  | TRUE     |           0.095 |
+| bfx   | bfx-100 |      3 | 10,779  | 9,738 (7,749 - 12,397)      | TRUE     |           0.810 |
 
 The `rd` model fails to recover the unknown population sizes when the
 true data generating process allows for individual variation in
