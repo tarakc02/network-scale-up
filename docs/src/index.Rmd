@@ -5,7 +5,7 @@ author:
 output:
     github_document:
         toc: true
-        html_preview: false
+        html_preview: true
 ---
 
 ## Background
@@ -76,7 +76,8 @@ map(sim_stats, "degrees") %>%
     pivot_wider(names_from = quantile, values_from = x)
 ```
 
-And summaries of the remaining
+And summaries of other aspects of the simulations, including the (unobserved)
+subpopulation sizes, which will be our main target for inference:
 
 ```{r, echo = FALSE}
 summarise_sim <- function(sim, sim_name) {
@@ -117,7 +118,7 @@ repo](https://github.com/tarakc02/network-scale-up) for all of the resulting
 comparisons. Below are a couple of representative examples. First, we see how
 each model looked on the random degree simulated data with 100 respondents:
 
-|![](https://github.com/tarakc02/network-scale-up/blob/master/assess-fit/output/checkfit-rd-100-rd.png?raw=true) | ![](https://github.com/tarakc02/network-scale-up/blob/master/assess-fit/output/checkfit-rd-100-bfx.png?raw=true)|
+|![](https://github.com/tarakc02/network-scale-up/blob/master/assess-fit/output/checkfit-rd-100-rd.png?raw=true) |![](https://github.com/tarakc02/network-scale-up/blob/master/assess-fit/output/checkfit-rd-100-bfx.png?raw=true)|
 |-|-|
 
 Now the two models on the barrier effects simulated data with 100 respondents:

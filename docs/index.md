@@ -68,7 +68,9 @@ simulated respondents in each simulation:
     ## 3 rd-100     10  53.9  130.  246.  491. 1331.   6764
     ## 4 rd-25      18  83.4  200   260   554. 1828    3536
 
-And summaries of the remaining
+And summaries of other aspects of the simulations, including the
+(unobserved) subpopulation sizes, which will be our main target for
+inference:
 
     ## 
     ## ########
@@ -148,18 +150,18 @@ interval, alongside the ground truth:
 
 | model | data    | subpop | truth   | estimate and 95% interval   | in_range | p-value (truth) |
 |:------|:--------|-------:|:--------|:----------------------------|:---------|----------------:|
-| rd    | rd-100  |      1 | 53,811  | 53,427 (51,457 - 55,564)    | TRUE     |           0.652 |
-| rd    | rd-100  |      2 | 168,157 | 170,124 (166,422 - 173,574) | TRUE     |           0.140 |
-| rd    | rd-100  |      3 | 43,734  | 43,376 (41,680 - 45,253)    | TRUE     |           0.653 |
-| rd    | bfx-100 |      1 | 97,573  | 86,101 (83,766 - 88,712)    | FALSE    |           1.000 |
-| rd    | bfx-100 |      2 | 95,487  | 92,447 (89,788 - 95,063)    | FALSE    |           0.989 |
-| rd    | bfx-100 |      3 | 10,779  | 8,215 (7,446 - 8,998)       | FALSE    |           1.000 |
-| bfx   | rd-100  |      1 | 53,811  | 53,622 (51,425 - 55,871)    | TRUE     |           0.565 |
-| bfx   | rd-100  |      2 | 168,157 | 169,492 (165,137 - 174,029) | TRUE     |           0.273 |
-| bfx   | rd-100  |      3 | 43,734  | 43,655 (41,625 - 45,817)    | TRUE     |           0.528 |
-| bfx   | bfx-100 |      1 | 97,573  | 93,985 (75,021 - 117,012)   | TRUE     |           0.632 |
-| bfx   | bfx-100 |      2 | 95,487  | 111,918 (87,650 - 143,229)  | TRUE     |           0.095 |
-| bfx   | bfx-100 |      3 | 10,779  | 9,738 (7,749 - 12,397)      | TRUE     |           0.810 |
+| rd    | rd-100  |      1 | 53,811  | 53,414 (51,245 - 55,625)    | TRUE     |           0.644 |
+| rd    | rd-100  |      2 | 168,157 | 170,002 (166,162 - 173,805) | TRUE     |           0.177 |
+| rd    | rd-100  |      3 | 43,734  | 43,357 (41,674 - 45,192)    | TRUE     |           0.637 |
+| rd    | bfx-100 |      1 | 97,573  | 86,068 (83,721 - 88,721)    | FALSE    |           1.000 |
+| rd    | bfx-100 |      2 | 95,487  | 92,443 (89,471 - 95,084)    | FALSE    |           0.986 |
+| rd    | bfx-100 |      3 | 10,779  | 8,230 (7,486 - 8,938)       | FALSE    |           1.000 |
+| bfx   | rd-100  |      1 | 53,811  | 53,600 (51,237 - 55,943)    | TRUE     |           0.565 |
+| bfx   | rd-100  |      2 | 168,157 | 169,707 (165,201 - 174,278) | TRUE     |           0.256 |
+| bfx   | rd-100  |      3 | 43,734  | 43,700 (41,716 - 45,769)    | TRUE     |           0.513 |
+| bfx   | bfx-100 |      1 | 97,573  | 93,642 (75,916 - 115,654)   | TRUE     |           0.658 |
+| bfx   | bfx-100 |      2 | 95,487  | 110,684 (87,747 - 138,714)  | TRUE     |           0.106 |
+| bfx   | bfx-100 |      3 | 10,779  | 9,854 (7,810 - 12,540)      | TRUE     |           0.781 |
 
 The `rd` model fails to recover the unknown population sizes when the
 true data generating process allows for individual variation in
