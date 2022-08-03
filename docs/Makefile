@@ -7,12 +7,12 @@
 
 .PHONY: all clean
 
-all: output/index.md
+all: index.md
 
 clean: 
 	-rm -r output/*
 
-output/%.md: \
+%.md: \
 		src/%.Rmd
 	-mkdir output
 	Rscript -e "rmarkdown::render('$<')"
