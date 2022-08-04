@@ -100,8 +100,7 @@ inference:
 ## Models
 
 Find the stan models used to fit the random degree and barrier effects
-models in the `fit-models` directory in [the github
-repo](https://github.com/tarakc02/network-scale-up).
+models in the [`fit-model`](../fit-model) directory.
 
 ## Assessing fit without access to ground truth
 
@@ -117,20 +116,19 @@ things have fit well, then the actual data set should look like the
 simulated data sets. So, for instance, the mean in the actual data
 should fall within the range of means seen in the simulated datasets.
 
-See the assess-fit/output directory in [the
-repo](https://github.com/tarakc02/network-scale-up) for all of the
-resulting comparisons. Below are a couple of representative examples.
-First, we see how each model looked on the random degree simulated data
-with 100 respondents:
+See the [`assess-fit/output`](../assess-fit/output) directory for all of
+the resulting comparisons. Below are a couple of representative
+examples. First, we see how each model looked on the random degree
+simulated data with 100 respondents:
 
-| ![](https://github.com/tarakc02/network-scale-up/blob/master/assess-fit/output/checkfit-rd-100-rd.png?raw=true) | ![](https://github.com/tarakc02/network-scale-up/blob/master/assess-fit/output/checkfit-rd-100-bfx.png?raw=true) |
-|-----------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------|
+| ![](../assess-fit/output/checkfit-rd-100-rd.png?raw=true) | ![](../assess-fit/output/checkfit-rd-100-bfx.png?raw=true) |
+|-----------------------------------------------------------|------------------------------------------------------------|
 
 Now the two models on the barrier effects simulated data with 100
 respondents:
 
-| ![](https://github.com/tarakc02/network-scale-up/blob/master/assess-fit/output/checkfit-bfx-100-rd.png?raw=true) | ![](https://github.com/tarakc02/network-scale-up/blob/master/assess-fit/output/checkfit-bfx-100-bfx.png?raw=true) |
-|------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------|
+| ![](../assess-fit/output/checkfit-bfx-100-rd.png?raw=true) | ![](../assess-fit/output/checkfit-bfx-100-bfx.png?raw=true) |
+|------------------------------------------------------------|-------------------------------------------------------------|
 
 Since the random degree model doesn’t account for variation in exposure
 to the subpopulation, the fitted model cannot account for the amount of
@@ -150,18 +148,18 @@ interval, alongside the ground truth:
 
 | model | data    | subpop | truth   | estimate and 95% interval   | in_range | p-value (truth) |
 |:------|:--------|-------:|:--------|:----------------------------|:---------|----------------:|
-| rd    | rd-100  |      1 | 53,811  | 53,490 (51,475 - 55,388)    | TRUE     |           0.629 |
-| rd    | rd-100  |      2 | 168,157 | 170,148 (166,211 - 173,773) | TRUE     |           0.147 |
-| rd    | rd-100  |      3 | 43,734  | 43,352 (41,522 - 45,143)    | TRUE     |           0.669 |
-| rd    | bfx-100 |      1 | 97,573  | 86,150 (83,611 - 88,753)    | FALSE    |           1.000 |
-| rd    | bfx-100 |      2 | 95,487  | 92,536 (89,761 - 95,286)    | FALSE    |           0.979 |
-| rd    | bfx-100 |      3 | 10,779  | 8,246 (7,494 - 9,044)       | FALSE    |           1.000 |
-| bfx   | rd-100  |      1 | 53,811  | 53,655 (51,340 - 56,024)    | TRUE     |           0.559 |
-| bfx   | rd-100  |      2 | 168,157 | 169,485 (165,261 - 173,794) | TRUE     |           0.268 |
-| bfx   | rd-100  |      3 | 43,734  | 43,681 (41,739 - 45,826)    | TRUE     |           0.524 |
-| bfx   | bfx-100 |      1 | 97,573  | 93,611 (75,332 - 118,423)   | TRUE     |           0.646 |
-| bfx   | bfx-100 |      2 | 95,487  | 110,989 (87,671 - 141,028)  | TRUE     |           0.102 |
-| bfx   | bfx-100 |      3 | 10,779  | 9,791 (7,864 - 12,459)      | TRUE     |           0.801 |
+| rd    | rd-100  |      1 | 53,811  | 53,414 (51,412 - 55,468)    | TRUE     |           0.655 |
+| rd    | rd-100  |      2 | 168,157 | 170,061 (166,480 - 173,578) | TRUE     |           0.155 |
+| rd    | rd-100  |      3 | 43,734  | 43,392 (41,686 - 45,170)    | TRUE     |           0.654 |
+| rd    | bfx-100 |      1 | 97,573  | 86,110 (83,661 - 88,673)    | FALSE    |           1.000 |
+| rd    | bfx-100 |      2 | 95,487  | 92,441 (89,744 - 95,199)    | FALSE    |           0.987 |
+| rd    | bfx-100 |      3 | 10,779  | 8,256 (7,464 - 9,035)       | FALSE    |           1.000 |
+| bfx   | rd-100  |      1 | 53,811  | 53,698 (51,427 - 56,016)    | TRUE     |           0.542 |
+| bfx   | rd-100  |      2 | 168,157 | 169,503 (165,057 - 174,173) | TRUE     |           0.280 |
+| bfx   | rd-100  |      3 | 43,734  | 43,692 (41,525 - 45,895)    | TRUE     |           0.520 |
+| bfx   | bfx-100 |      1 | 97,573  | 93,889 (74,273 - 119,731)   | TRUE     |           0.640 |
+| bfx   | bfx-100 |      2 | 95,487  | 111,292 (87,672 - 140,773)  | TRUE     |           0.122 |
+| bfx   | bfx-100 |      3 | 10,779  | 9,853 (7,897 - 12,583)      | TRUE     |           0.792 |
 
 The `rd` model fails to recover the unknown population sizes when the
 true data generating process allows for individual variation in
