@@ -100,8 +100,7 @@ inference:
 ## Models
 
 Find the stan models used to fit the random degree and barrier effects
-models in the `fit-models` directory in [the github
-repo](https://github.com/tarakc02/network-scale-up).
+models in the [`fit-model`](../fit-model) directory.
 
 ## Assessing fit without access to ground truth
 
@@ -117,28 +116,38 @@ things have fit well, then the actual data set should look like the
 simulated data sets. So, for instance, the mean in the actual data
 should fall within the range of means seen in the simulated datasets.
 
-See the assess-fit/output directory in [the
-repo](https://github.com/tarakc02/network-scale-up) for all of the
-resulting comparisons. Below are a couple of representative examples.
-First, we see how each model looked on the random degree simulated data
-with 100 respondents:
+In most situations, we’ll have a model that fits some aspects of the
+data, and not others, and deciding whether a model is useful will depend
+on whether the comparisons (between data and model posterior) that we
+make are relevant to our ultimate questions of interest. Since I’m
+ultimately interested in estimating the sizes of the unknown
+subpopulations, I decided to focus on the vectors of responses to the
+three questions about the unknown subpopulations. For specific
+statistical tests, I chose three summary statistics: the mean, the
+standard deviation, and the 95th percentile. I calculate all three
+summary statistics on the observed data, and on simulated replicates of
+the data, and then I see where the summary of the observed data fits in
+the distribution of summaries over the replicate datasets.
 
-| ![](https://github.com/tarakc02/network-scale-up/blob/master/assess-fit/output/checkfit-rd-100-rd.png?raw=true) | ![](https://github.com/tarakc02/network-scale-up/blob/master/assess-fit/output/checkfit-rd-100-bfx.png?raw=true) |
-|-----------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------|
+See the [`assess-fit/output`](../assess-fit/output) directory for all of
+the resulting comparisons. Below are a couple of representative
+examples. First, we see how each model looked on the random degree
+simulated data with 100 respondents:
+
+| ![](../assess-fit/output/checkfit-rd-100-rd.png?raw=true) | ![](../assess-fit/output/checkfit-rd-100-bfx.png?raw=true) |
+|-----------------------------------------------------------|------------------------------------------------------------|
+
+Both models fit the model well, at least according to this test.
 
 Now the two models on the barrier effects simulated data with 100
 respondents:
 
-| ![](https://github.com/tarakc02/network-scale-up/blob/master/assess-fit/output/checkfit-bfx-100-rd.png?raw=true) | ![](https://github.com/tarakc02/network-scale-up/blob/master/assess-fit/output/checkfit-bfx-100-bfx.png?raw=true) |
-|------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------|
+| ![](../assess-fit/output/checkfit-bfx-100-rd.png?raw=true) | ![](../assess-fit/output/checkfit-bfx-100-bfx.png?raw=true) |
+|------------------------------------------------------------|-------------------------------------------------------------|
 
 Since the random degree model doesn’t account for variation in exposure
 to the subpopulation, the fitted model cannot account for the amount of
 variation, or the more extreme values that arise due to that variation.
-In most situations, we’ll have a model that fits some aspects of the
-data, and not others, and deciding whether a model is useful will depend
-on whether the comparisons (between data and model posterior) that we
-make are relevant to our ultimate questions of interest.
 
 ## Comparing to ground truth
 
@@ -148,21 +157,63 @@ table summarizes, for each subpopulation within each dataset and for
 each model, the point estimate along with associated 95% credible
 interval, alongside the ground truth:
 
-| model | data    | subpop | truth   | estimate and 95% interval   | in_range | p-value (truth) |
-|:------|:--------|-------:|:--------|:----------------------------|:---------|----------------:|
-| rd    | rd-100  |      1 | 53,811  | 53,490 (51,475 - 55,388)    | TRUE     |           0.629 |
-| rd    | rd-100  |      2 | 168,157 | 170,148 (166,211 - 173,773) | TRUE     |           0.147 |
-| rd    | rd-100  |      3 | 43,734  | 43,352 (41,522 - 45,143)    | TRUE     |           0.669 |
-| rd    | bfx-100 |      1 | 97,573  | 86,150 (83,611 - 88,753)    | FALSE    |           1.000 |
-| rd    | bfx-100 |      2 | 95,487  | 92,536 (89,761 - 95,286)    | FALSE    |           0.979 |
-| rd    | bfx-100 |      3 | 10,779  | 8,246 (7,494 - 9,044)       | FALSE    |           1.000 |
-| bfx   | rd-100  |      1 | 53,811  | 53,655 (51,340 - 56,024)    | TRUE     |           0.559 |
-| bfx   | rd-100  |      2 | 168,157 | 169,485 (165,261 - 173,794) | TRUE     |           0.268 |
-| bfx   | rd-100  |      3 | 43,734  | 43,681 (41,739 - 45,826)    | TRUE     |           0.524 |
-| bfx   | bfx-100 |      1 | 97,573  | 93,611 (75,332 - 118,423)   | TRUE     |           0.646 |
-| bfx   | bfx-100 |      2 | 95,487  | 110,989 (87,671 - 141,028)  | TRUE     |           0.102 |
-| bfx   | bfx-100 |      3 | 10,779  | 9,791 (7,864 - 12,459)      | TRUE     |           0.801 |
+| model | data    | subpop | truth   | estimate and 95% interval   | in_interval | p-value (truth) |
+|:------|:--------|-------:|:--------|:----------------------------|:------------|----------------:|
+| rd    | rd-100  |      1 | 53,811  | 53,503 (51,495 - 55,548)    | TRUE        |           0.632 |
+| rd    | rd-100  |      2 | 168,157 | 170,032 (166,240 - 173,855) | TRUE        |           0.168 |
+| rd    | rd-100  |      3 | 43,734  | 43,422 (41,509 - 45,227)    | TRUE        |           0.631 |
+| rd    | bfx-100 |      1 | 97,573  | 86,072 (83,735 - 88,689)    | FALSE       |           1.000 |
+| rd    | bfx-100 |      2 | 95,487  | 92,415 (89,861 - 94,997)    | FALSE       |           0.987 |
+| rd    | bfx-100 |      3 | 10,779  | 8,254 (7,467 - 9,023)       | FALSE       |           1.000 |
+| bfx   | rd-100  |      1 | 53,811  | 53,588 (51,374 - 55,993)    | TRUE        |           0.566 |
+| bfx   | rd-100  |      2 | 168,157 | 169,529 (164,780 - 173,835) | TRUE        |           0.273 |
+| bfx   | rd-100  |      3 | 43,734  | 43,694 (41,644 - 45,870)    | TRUE        |           0.518 |
+| bfx   | bfx-100 |      1 | 97,573  | 93,344 (73,166 - 117,955)   | TRUE        |           0.632 |
+| bfx   | bfx-100 |      2 | 95,487  | 111,559 (87,177 - 141,851)  | TRUE        |           0.109 |
+| bfx   | bfx-100 |      3 | 10,779  | 9,779 (7,741 - 12,696)      | TRUE        |           0.790 |
 
 The `rd` model fails to recover the unknown population sizes when the
 true data generating process allows for individual variation in
 likelihood of knowing someone in the unknown subpopulation.
+
+To get a sense of how the number of respondents affects the uncertainty
+in our estimates, here’s the same summary on the datasets with 25,
+instead of 100, respondents:
+
+``` r
+posteriors %>%
+    filter(data %in% c("bfx-25", "rd-25")) %>%
+    group_by(model, data, subpop) %>%
+    summarise(lo = quantile(.value, .025),
+              mid = median(.value),
+              hi = quantile(.value, .975),
+              ecdf = list(ecdf(.value)),
+              .groups = "drop") %>%
+    inner_join(true_subpop_sizes, by = c("data", "subpop")) %>%
+    mutate(in_interval = truth >= lo & truth <= hi) %>%
+    mutate(across(c(lo, mid, hi),
+                  ~str_trim(format(round(.),
+                                   big.mark = ","))),
+           truth_pvalue = map2_dbl(ecdf, truth, ~.x(.y))) %>%
+    transmute(model, data, subpop,
+              truth = format(round(truth), big.mark = ","),
+              "estimate and 95% interval" = str_glue("{mid} ({lo} - {hi})"),
+              in_interval, "p-value (truth)" = truth_pvalue) %>%
+    arrange(desc(model), desc(data)) %>%
+    knitr::kable()
+```
+
+| model | data   | subpop | truth   | estimate and 95% interval   | in_interval | p-value (truth) |
+|:------|:-------|-------:|:--------|:----------------------------|:------------|----------------:|
+| rd    | rd-25  |      1 | 167,918 | 172,239 (165,589 - 178,678) | TRUE        |           0.100 |
+| rd    | rd-25  |      2 | 184,601 | 181,631 (174,972 - 188,444) | TRUE        |           0.788 |
+| rd    | rd-25  |      3 | 100,708 | 106,005 (100,832 - 111,289) | FALSE       |           0.022 |
+| rd    | bfx-25 |      1 | 142,918 | 116,178 (110,899 - 121,963) | FALSE       |           1.000 |
+| rd    | bfx-25 |      2 | 18,991  | 17,077 (15,023 - 19,081)    | TRUE        |           0.969 |
+| rd    | bfx-25 |      3 | 31,736  | 20,202 (17,955 - 22,417)    | FALSE       |           1.000 |
+| bfx   | rd-25  |      1 | 167,918 | 172,783 (163,580 - 183,473) | TRUE        |           0.162 |
+| bfx   | rd-25  |      2 | 184,601 | 183,652 (174,804 - 195,519) | TRUE        |           0.577 |
+| bfx   | rd-25  |      3 | 100,708 | 106,196 (99,260 - 113,378)  | TRUE        |           0.062 |
+| bfx   | bfx-25 |      1 | 142,918 | 162,568 (117,989 - 237,334) | TRUE        |           0.226 |
+| bfx   | bfx-25 |      2 | 18,991  | 16,364 (11,270 - 25,254)    | TRUE        |           0.781 |
+| bfx   | bfx-25 |      3 | 31,736  | 32,052 (21,975 - 48,812)    | TRUE        |           0.487 |

@@ -97,7 +97,7 @@ iwalk(sim_stats, summarise_sim)
 ## Models
 
 Find the stan models used to fit the random degree and barrier effects models
-in the `fit-models` directory in [the github repo](https://github.com/tarakc02/network-scale-up).
+in the [`fit-model`](../fit-model) directory.
 
 ## Assessing fit without access to ground truth
 
@@ -113,26 +113,36 @@ set should look like the simulated data sets. So, for instance, the mean in the
 actual data should fall within the range of means seen in the simulated
 datasets.
 
-See the assess-fit/output directory in [the
-repo](https://github.com/tarakc02/network-scale-up) for all of the resulting
-comparisons. Below are a couple of representative examples. First, we see how
-each model looked on the random degree simulated data with 100 respondents:
+In most situations, we'll have a model that fits some aspects of the data, and
+not others, and deciding whether a model is useful will depend on whether the
+comparisons (between data and model posterior) that we make are relevant to our
+ultimate questions of interest. Since I'm ultimately interested in estimating
+the sizes of the unknown subpopulations, I decided to focus on the vectors of
+responses to the three questions about the unknown subpopulations. For specific
+statistical tests, I chose three summary statistics: the mean, the standard
+deviation, and the 95th percentile. I calculate all three summary statistics on
+the observed data, and on simulated replicates of the data, and then I see
+where the summary of the observed data fits in the distribution of summaries
+over the replicate datasets.
 
-|![](https://github.com/tarakc02/network-scale-up/blob/master/assess-fit/output/checkfit-rd-100-rd.png?raw=true) |![](https://github.com/tarakc02/network-scale-up/blob/master/assess-fit/output/checkfit-rd-100-bfx.png?raw=true)|
+See the [`assess-fit/output`](../assess-fit/output) directory for all of the
+resulting comparisons. Below are a couple of representative examples. First, we
+see how each model looked on the random degree simulated data with 100
+respondents:
+
+|![](../assess-fit/output/checkfit-rd-100-rd.png?raw=true) |![](../assess-fit/output/checkfit-rd-100-bfx.png?raw=true)|
 |-|-|
+
+Both models fit the model well, at least according to this test.
 
 Now the two models on the barrier effects simulated data with 100 respondents:
 
-|![](https://github.com/tarakc02/network-scale-up/blob/master/assess-fit/output/checkfit-bfx-100-rd.png?raw=true) |![](https://github.com/tarakc02/network-scale-up/blob/master/assess-fit/output/checkfit-bfx-100-bfx.png?raw=true)|
+|![](../assess-fit/output/checkfit-bfx-100-rd.png?raw=true) |![](../assess-fit/output/checkfit-bfx-100-bfx.png?raw=true)|
 |-|-|
 
 Since the random degree model doesn't account for variation in exposure to the
 subpopulation, the fitted model cannot account for the amount of variation, or
-the more extreme values that arise due to that variation. In most situations,
-we'll have a model that fits some aspects of the data, and not others, and
-deciding whether a model is useful will depend on whether the comparisons
-(between data and model posterior) that we make are relevant to our ultimate
-questions of interest.
+the more extreme values that arise due to that variation.
 
 ## Comparing to ground truth
 
@@ -181,7 +191,7 @@ posteriors %>%
               ecdf = list(ecdf(.value)),
               .groups = "drop") %>%
     inner_join(true_subpop_sizes, by = c("data", "subpop")) %>%
-    mutate(in_range = truth >= lo & truth <= hi) %>%
+    mutate(in_interval = truth >= lo & truth <= hi) %>%
     mutate(across(c(lo, mid, hi),
                   ~str_trim(format(round(.),
                                    big.mark = ","))),
@@ -189,7 +199,7 @@ posteriors %>%
     transmute(model, data, subpop,
               truth = format(round(truth), big.mark = ","),
               "estimate and 95% interval" = str_glue("{mid} ({lo} - {hi})"),
-              in_range, "p-value (truth)" = truth_pvalue) %>%
+              in_interval, "p-value (truth)" = truth_pvalue) %>%
     arrange(desc(model), desc(data)) %>%
     knitr::kable()
 ```
@@ -197,3 +207,31 @@ posteriors %>%
 The `rd` model fails to recover the unknown population sizes when the true data
 generating process allows for individual variation in likelihood of knowing
 someone in the unknown subpopulation.
+
+To get a sense of how the number of respondents affects the uncertainty in our
+estimates, here's the same summary on the datasets with 25, instead of 100,
+respondents:
+
+```{r}
+posteriors %>%
+    filter(data %in% c("bfx-25", "rd-25")) %>%
+    group_by(model, data, subpop) %>%
+    summarise(lo = quantile(.value, .025),
+              mid = median(.value),
+              hi = quantile(.value, .975),
+              ecdf = list(ecdf(.value)),
+              .groups = "drop") %>%
+    inner_join(true_subpop_sizes, by = c("data", "subpop")) %>%
+    mutate(in_interval = truth >= lo & truth <= hi) %>%
+    mutate(across(c(lo, mid, hi),
+                  ~str_trim(format(round(.),
+                                   big.mark = ","))),
+           truth_pvalue = map2_dbl(ecdf, truth, ~.x(.y))) %>%
+    transmute(model, data, subpop,
+              truth = format(round(truth), big.mark = ","),
+              "estimate and 95% interval" = str_glue("{mid} ({lo} - {hi})"),
+              in_interval, "p-value (truth)" = truth_pvalue) %>%
+    arrange(desc(model), desc(data)) %>%
+    knitr::kable()
+```
+
