@@ -19,13 +19,13 @@ of Epidemics](https://arxiv.org/abs/2005.12783).
 The idea is that to estimate the size of a hard-to-count population, you
 randomly survey a handful of people and ask them:
 
-a) how many people do you know in all (the person's *degree*), and
+1. how many people do you know in all (the person's *degree*), and
 
-b) how many people do you know in the subpopulation of interest? We use the
+2. how many people do you know in the subpopulation of interest? We use the
 results to estimate the proportion of the overall population who are in the
 subpopulation of interest.
 
-Unfortunately, it turns out most people can't answer \(a\) very well. But, we
+Unfortunately, it turns out most people can't answer question 1 very well. But, we
 can estimate how many people someone knows by asking them a series of questions
 about members of subpopulations of known size ("how many people do you know
 named Michael?", "how many people do you know with a graduate degree?", etc.).

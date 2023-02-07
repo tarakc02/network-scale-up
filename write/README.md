@@ -20,16 +20,15 @@ Incidence and Evolution of Epidemics](https://arxiv.org/abs/2005.12783).
 The idea is that to estimate the size of a hard-to-count population, you
 randomly survey a handful of people and ask them:
 
-1)  how many people do you know in all (the person’s *degree*), and
+1.  how many people do you know in all (the person’s *degree*), and
 
-2)  how many people do you know in the subpopulation of interest? We use
+2.  how many people do you know in the subpopulation of interest? We use
     the results to estimate the proportion of the overall population who
     are in the subpopulation of interest.
 
-Unfortunately, it turns out most people can’t answer
-![a](https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&space;%5Cbg_white&space;a "a")
-very well. But, we can estimate how many people someone knows by asking
-them a series of questions about members of subpopulations of known size
+Unfortunately, it turns out most people can’t answer question 1 very
+well. But, we can estimate how many people someone knows by asking them
+a series of questions about members of subpopulations of known size
 (“how many people do you know named Michael?”, “how many people do you
 know with a graduate degree?”, etc.).
 
@@ -158,18 +157,18 @@ interval, alongside the ground truth:
 
 | model | data    | subpop | truth   | estimate and 95% interval   | in_interval | p-value (truth) |
 |:------|:--------|-------:|:--------|:----------------------------|:------------|----------------:|
-| rd    | rd-100  |      1 | 53,811  | 53,447 (51,437 - 55,475)    | TRUE        |           0.638 |
-| rd    | rd-100  |      2 | 168,157 | 170,115 (166,435 - 173,675) | TRUE        |           0.151 |
-| rd    | rd-100  |      3 | 43,734  | 43,279 (41,564 - 45,147)    | TRUE        |           0.663 |
-| rd    | bfx-100 |      1 | 97,573  | 86,072 (83,590 - 88,673)    | FALSE       |           1.000 |
-| rd    | bfx-100 |      2 | 95,487  | 92,388 (89,715 - 94,938)    | FALSE       |           0.994 |
-| rd    | bfx-100 |      3 | 10,779  | 8,218 (7,461 - 9,034)       | FALSE       |           1.000 |
-| bfx   | rd-100  |      1 | 53,811  | 53,592 (51,468 - 56,072)    | TRUE        |           0.574 |
-| bfx   | rd-100  |      2 | 168,157 | 169,507 (165,148 - 173,679) | TRUE        |           0.283 |
-| bfx   | rd-100  |      3 | 43,734  | 43,720 (41,647 - 45,939)    | TRUE        |           0.505 |
-| bfx   | bfx-100 |      1 | 97,573  | 93,454 (75,700 - 115,721)   | TRUE        |           0.646 |
-| bfx   | bfx-100 |      2 | 95,487  | 112,573 (87,930 - 141,566)  | TRUE        |           0.087 |
-| bfx   | bfx-100 |      3 | 10,779  | 9,846 (7,913 - 12,693)      | TRUE        |           0.788 |
+| rd    | rd-100  |      1 | 53,811  | 53,390 (51,412 - 55,469)    | TRUE        |           0.635 |
+| rd    | rd-100  |      2 | 168,157 | 170,145 (166,284 - 173,732) | TRUE        |           0.165 |
+| rd    | rd-100  |      3 | 43,734  | 43,353 (41,581 - 45,183)    | TRUE        |           0.635 |
+| rd    | bfx-100 |      1 | 97,573  | 86,173 (83,541 - 88,481)    | FALSE       |           1.000 |
+| rd    | bfx-100 |      2 | 95,487  | 92,469 (89,733 - 95,095)    | FALSE       |           0.987 |
+| rd    | bfx-100 |      3 | 10,779  | 8,231 (7,470 - 9,095)       | FALSE       |           1.000 |
+| bfx   | rd-100  |      1 | 53,811  | 53,626 (51,305 - 56,036)    | TRUE        |           0.563 |
+| bfx   | rd-100  |      2 | 168,157 | 169,703 (165,413 - 173,862) | TRUE        |           0.252 |
+| bfx   | rd-100  |      3 | 43,734  | 43,691 (41,644 - 45,845)    | TRUE        |           0.516 |
+| bfx   | bfx-100 |      1 | 97,573  | 93,877 (76,596 - 118,349)   | TRUE        |           0.636 |
+| bfx   | bfx-100 |      2 | 95,487  | 111,192 (88,543 - 138,015)  | TRUE        |           0.113 |
+| bfx   | bfx-100 |      3 | 10,779  | 9,919 (7,825 - 12,561)      | TRUE        |           0.781 |
 
 The `rd` model fails to recover the unknown population sizes when the
 true data generating process allows for individual variation in
@@ -204,15 +203,15 @@ posteriors %>%
 
 | model | data   | subpop | truth   | estimate and 95% interval   | in_interval | p-value (truth) |
 |:------|:-------|-------:|:--------|:----------------------------|:------------|----------------:|
-| rd    | rd-25  |      1 | 167,918 | 171,786 (165,498 - 178,672) | TRUE        |           0.122 |
-| rd    | rd-25  |      2 | 184,601 | 181,509 (174,351 - 188,601) | TRUE        |           0.792 |
-| rd    | rd-25  |      3 | 100,708 | 105,765 (101,026 - 111,139) | FALSE       |           0.020 |
-| rd    | bfx-25 |      1 | 142,918 | 116,325 (110,620 - 121,725) | FALSE       |           1.000 |
-| rd    | bfx-25 |      2 | 18,991  | 17,024 (15,018 - 19,024)    | TRUE        |           0.973 |
-| rd    | bfx-25 |      3 | 31,736  | 20,193 (17,895 - 22,334)    | FALSE       |           1.000 |
-| bfx   | rd-25  |      1 | 167,918 | 172,488 (162,818 - 182,946) | TRUE        |           0.172 |
-| bfx   | rd-25  |      2 | 184,601 | 183,422 (174,891 - 195,431) | TRUE        |           0.595 |
-| bfx   | rd-25  |      3 | 100,708 | 105,946 (99,878 - 113,133)  | TRUE        |           0.052 |
-| bfx   | bfx-25 |      1 | 142,918 | 165,163 (115,308 - 239,124) | TRUE        |           0.212 |
-| bfx   | bfx-25 |      2 | 18,991  | 16,552 (11,710 - 26,336)    | TRUE        |           0.770 |
-| bfx   | bfx-25 |      3 | 31,736  | 31,802 (22,405 - 48,215)    | TRUE        |           0.494 |
+| rd    | rd-25  |      1 | 167,918 | 171,904 (165,228 - 178,822) | TRUE        |           0.124 |
+| rd    | rd-25  |      2 | 184,601 | 181,518 (174,880 - 188,726) | TRUE        |           0.792 |
+| rd    | rd-25  |      3 | 100,708 | 105,834 (101,340 - 110,962) | FALSE       |           0.016 |
+| rd    | bfx-25 |      1 | 142,918 | 116,365 (110,430 - 122,006) | FALSE       |           1.000 |
+| rd    | bfx-25 |      2 | 18,991  | 16,990 (14,894 - 18,996)    | TRUE        |           0.974 |
+| rd    | bfx-25 |      3 | 31,736  | 20,220 (18,103 - 22,390)    | FALSE       |           1.000 |
+| bfx   | rd-25  |      1 | 167,918 | 172,383 (163,692 - 182,500) | TRUE        |           0.159 |
+| bfx   | rd-25  |      2 | 184,601 | 183,472 (173,605 - 194,337) | TRUE        |           0.598 |
+| bfx   | rd-25  |      3 | 100,708 | 106,062 (99,257 - 113,708)  | TRUE        |           0.068 |
+| bfx   | bfx-25 |      1 | 142,918 | 164,101 (117,252 - 242,677) | TRUE        |           0.208 |
+| bfx   | bfx-25 |      2 | 18,991  | 16,218 (11,719 - 24,468)    | TRUE        |           0.784 |
+| bfx   | bfx-25 |      3 | 31,736  | 32,246 (22,871 - 49,300)    | TRUE        |           0.477 |
